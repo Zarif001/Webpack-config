@@ -1,0 +1,26 @@
+@import "~normalize.css";
+@import "fonts.css";
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.container{
+    padding-top: 2em;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+h1{
+    text-align: center;
+}
+.logo{
+    background: url("../images/picture.png");
+    background-size: cover;
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+}
+.code{
+    color: crimson;
+    background: black;
+    font-size: 15px;
+}
