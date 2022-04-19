@@ -1,3 +1,6 @@
+/*!**********************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/normalize.css/normalize.css ***!
+  \**********************************************************************************************/
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -348,10 +351,16 @@ template {
   display: none;
 }
 
+/*!*********************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!./styles/fonts.css ***!
+  \*********************************************************************/
 @font-face{
     font-family: 'Roboto';
     src: url(8715816950c03a0cf8b2.ttf) format('truetype');
 }
+/*!*********************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!./styles/style.css ***!
+  \*********************************************************************/
 body{
     font-family: 'Roboto', sans-serif;
 }
@@ -371,7 +380,21 @@ h1{
     height: 500px;
 }
 .code{
-    color: crimson;
+    color: yellow;
     background: black;
-    font-size: 15px;
+    font-size: 20px;
 }
+
+/*!***************************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!./styles/common.scss ***!
+  \***************************************************************************************************************/
+.card {
+  padding: 1rem;
+  font-size: 20px;
+  background-color: pink; }
+  .card h2 {
+    text-align: center;
+    color: red; }
+
+
+/*# sourceMappingURL=main.css.map*/

@@ -1,7 +1,7 @@
 import * as $ from 'jquery'
-function createAnn() {
+function createAnn() : object{
     let counter = 0,
-        destroyed = false
+        destroyed : boolean = false
 
     console.log('test');
     const listener = () => counter++
@@ -22,4 +22,4 @@ function createAnn() {
     }
 }
 
-window.analytics = createAnn()
+window['analytics'] = createAnn()
