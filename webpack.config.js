@@ -66,7 +66,7 @@ const plugins = () => {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].scss'
+            filename: '[name].css'
         })
     ]
     if(isDev){
@@ -85,7 +85,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
-        extensions: ['.js', '.png', '.html', '.scss'],
+        extensions: ['.js', '.png', '.html', '.css'],
         // alias: {
         //     '@models': path.resolve(__dirname, 'src/models'),
         //     '@img': path.resolve(__dirname, 'src/images')
