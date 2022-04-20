@@ -66,10 +66,10 @@ const plugins = () => {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css'
+            filename: '[name].scss'
         })
     ]
-    if(isProd){
+    if(isDev){
         base.push(new BundleAnalyzerPlugin())
     }
     return base
@@ -78,19 +78,18 @@ module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
     entry: {
-        main: ['@babel/polyfill', './index.jsx'],
-        analytics: './analytics.ts'
+        main: ['@babel/polyfill', './index.js']
     },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
-        extensions: ['.js', '.png', '.html', '.css'],
-        alias: {
-            '@models': path.resolve(__dirname, 'src/models'),
-            '@img': path.resolve(__dirname, 'src/images')
-        }
+        extensions: ['.js', '.png', '.html', '.scss'],
+        // alias: {
+        //     '@models': path.resolve(__dirname, 'src/models'),
+        //     '@img': path.resolve(__dirname, 'src/images')
+        // }
     },
     optimization: optimization(),
     devServer: {
@@ -99,10 +98,11 @@ module.exports = {
         hot: isDev,
     },
     // devtool: isDev ? 'source-map': '',
-    devtool: 'source-map',
+    // devtool: 'source-map',
     plugins: plugins(),
     module: {
         rules: [
+            
             {
                 test: /\.html$/,
                 use: ['html-loader']
@@ -117,9 +117,8 @@ module.exports = {
                 use: cssLoaders('sass-loader')
             },
             {
-                test: /\.(png|jpg|svg|gif)$/,
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
-                use: ["file-loader"],
             },
             {
                 test: /\.(ttf|woff|woff2|eot)$/,
