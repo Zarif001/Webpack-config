@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const {BundleAnalyzerPlugin}  = require('webpack-bundle-analyzer')
+const loader = require('sass-loader')
+const HTMLWebpackPugPlugin = require('html-webpack-pug-plugin')
 
 
 const isDev = process.env.NODE_ENV === 'develompent'
@@ -26,7 +28,6 @@ const optimization = () => {
 }
 
 
-// const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 
 const cssLoaders = extra => {
     const loaders = [
@@ -40,34 +41,21 @@ const cssLoaders = extra => {
     }
     return loaders
 }
-// const babelOptions  = preset =>{
-//     const opts = {
-//         presets: [
-//             '@babel/preset-env'
-//         ],
-//         plugins:[
-//            ' @babel/plugin-proposal-class-properties'
-//         ]
-//     }
-//     if(preset){
-//         opts.presets.push(preset)
-//     }
-//     return opts
-// }
 
 const plugins = () => {
     const base = [
 
         new HTMLWebpackPlugin({
-            template: './index.html',
+            template: './index.pug',
             minify: {
-                collapseWhitespace: isProd
+                collapseWhitespace: isDev
             }
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].css'
-        })
+        }),
+        
     ]
     if(isDev){
         base.push(new BundleAnalyzerPlugin())
@@ -112,6 +100,10 @@ module.exports = {
                 test: /\.css$/,
                 use: cssLoaders()
             },
+            {  
+                test: /\.pug$/,
+                use: ['pug-loader']
+            },
             {
                 test: /\.s[ac]ss$/,
                 use: cssLoaders('sass-loader')
@@ -119,10 +111,11 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
+                exclude: /(node_modules|bower_components)/
             },
             {
-                test: /\.(ttf|woff|woff2|eot)$/,
-                use: ['file-loader']
+                test: /\.(ttf|woff|woff2|eot)$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.xml$/,
